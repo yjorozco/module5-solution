@@ -50,17 +50,17 @@
           </span>
           <br>
 
-          <input class="jander2" type="text" name="short_name" placeholder="Pick a item"
-            ng-model="reg.user.short_name"
+          <input class="jander2" type="text" name="item" placeholder="Pick a item"
+            ng-model="reg.user.item"
             required
             minlength="3"
             ng-maxlength="3">
 
             <span
-              ng-if="(regForm.short_name.$error.minlength || regForm.short_name.$error.required) && regForm.short_name.$touched">
+              ng-if="(regForm.item.$error.minlength || regForm.item.$error.required) && regForm.item.$touched">
               ItemName must be at least 3 characters long
             </span>
-            <span ng-if="regForm.short_name.$error.maxlength && regForm.short_name.$touched">
+            <span ng-if="regForm.item.$error.maxlength && regForm.item.$touched">
               ItemName must not be longer than 3 characters
             </span>
             <br>
