@@ -1,0 +1,74 @@
+
+<style type="text/css">
+ .jander2{
+    color: #000;
+ }
+</style>
+
+<div class="container">
+    <fieldset>
+      <legend>Registration</legend>
+      <form name='regForm' novalidate>
+
+        <input class="jander2" type="text" name="username" placeholder="Pick a username"
+          ng-model="reg.user.username"
+          required
+          minlength="4"
+          ng-maxlength="10">
+
+          <span
+            ng-if="(regForm.username.$error.minlength || regForm.username.$error.required) && regForm.username.$touched">
+            Username must be at least 4 characters long
+          </span>
+          <span ng-if="regForm.username.$error.maxlength && regForm.username.$touched">
+            Username must not be longer than 10 characters
+          </span>
+          <br>
+
+        <input class="jander2" type="email" name="email" placeholder="Email"
+          ng-model="reg.user.email"
+          required>
+          <span ng-if="regForm.email.$invalid && regForm.email.$touched">
+            Must be a valid email address: handle@domain format
+          </span>
+          <br>
+
+        <input class="jander2" type="text" name="address" placeholder="Pick a address"
+          ng-model="reg.user.address"
+          required >
+            <span ng-if="regForm.address.$invalid && regForm.phone.$touched">
+              Address is mandatory.
+            </span>
+
+          <br>
+
+        <input class="jander2" type="text" name="phone" placeholder="Phone ###-###-####"
+          ng-model="reg.user.phone"
+          pattern="(\d{3})-(\d{3})-(\d{4})">
+          <span ng-if="regForm.phone.$invalid && regForm.phone.$touched">
+            Phone must be in the format ###-###-####.
+          </span>
+          <br>
+
+          <input class="jander2" type="text" name="short_name" placeholder="Pick a item"
+            ng-model="reg.user.short_name"
+            required
+            minlength="3"
+            ng-maxlength="3">
+
+            <span
+              ng-if="(regForm.short_name.$error.minlength || regForm.short_name.$error.required) && regForm.short_name.$touched">
+              ItemName must be at least 3 characters long
+            </span>
+            <span ng-if="regForm.short_name.$error.maxlength && regForm.short_name.$touched">
+              ItemName must not be longer than 3 characters
+            </span>
+            <br>
+
+        <button
+          ng-disabled="regForm.$invalid"
+          ng-click="reg.submit()">Submit</button>
+
+      </form>
+    </fieldset>
+</div>
