@@ -8,9 +8,15 @@ function SingUpController(MenuService) {
   var reg = this;
 
   reg.submit = function () {
-    reg.completed = true;
 
+  var item=service.getMenuItem(reg.user.item);
+  if(item){
+      reg.notExits = true;
+      reg.completed = true;
       MenuService.saveUser(reg.user);
+  }else{
+
+  }
 
   };
 }
