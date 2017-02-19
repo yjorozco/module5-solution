@@ -28,13 +28,19 @@ function MenuService($http, ApiPath) {
   };
 
   service.getMenuItem = function (item) {
-    var config = {};
-    if (category) {
-      config.params = {'short_name': item};
-    }
-    return $http.get(ApiPath + '/menu_items.json', config).then(function (response) {
-      return response.data;
-    });
+    var item_element={};   
+    if (item) {
+      return $http.get(ApiPath + '/menu_items.json').then(function (response) {
+        var items=response.data.menu_items;
+        for(var i=0;i<items.length;i++){
+          if(items[i].short_name.toLowerCase()===item.toLowerCase()){
+              item_element=items[i];              
+              break;
+          }
+        }
+        return item_element;
+      });
+    }   
   };
 
   service.saveUser = function (userLogin) {

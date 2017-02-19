@@ -9,7 +9,7 @@
     <fieldset>
       <legend>Registration</legend>
       <form name='regForm' novalidate>
-
+        Username: <br>
         <input class="jander2" type="text" name="username" placeholder="Pick a username"
           ng-model="reg.user.username"
           required
@@ -24,7 +24,7 @@
             Username must not be longer than 10 characters
           </span>
           <br>
-
+        Email: <br>
         <input class="jander2" type="email" name="email" placeholder="Email"
           ng-model="reg.user.email"
           required>
@@ -32,7 +32,7 @@
             Must be a valid email address: handle@domain format
           </span>
           <br>
-
+        Address: <br>
         <input class="jander2" type="text" name="address" placeholder="Pick a address"
           ng-model="reg.user.address"
           required >
@@ -41,7 +41,7 @@
             </span>
 
           <br>
-
+        Phone:  <br>
         <input class="jander2" type="text" name="phone" placeholder="Phone ###-###-####"
           ng-model="reg.user.phone"
           pattern="(\d{3})-(\d{3})-(\d{4})">
@@ -49,26 +49,28 @@
             Phone must be in the format ###-###-####.
           </span>
           <br>
-
+         Item: <br>
           <input class="jander2" type="text" name="item" placeholder="Pick a item"
             ng-model="reg.user.item"
             required
-            minlength="3"
-            ng-maxlength="3">
+           >
 
-            <span
-              ng-if="(regForm.item.$error.minlength || regForm.item.$error.required) && regForm.item.$touched">
-              ItemName must be at least 3 characters long
-            </span>
-            <span ng-if="regForm.item.$error.maxlength && regForm.item.$touched">
-              ItemName must not be longer than 3 characters
+            <span ng-if="regForm.item.$invalid && regForm.item.$touched">
+              item is mandatory.
             </span>
             <br>
-
-        <button
+        <br>
+        <button  class="jander2"
           ng-disabled="regForm.$invalid"
           ng-click="reg.submit()">Submit</button>
 
       </form>
+      
+      <information completed="reg.completed"></information>
+
+
+      <div ng-if="!reg.exists" >
+          No such menu number exists
+      </div>
     </fieldset>
 </div>
