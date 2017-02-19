@@ -30,7 +30,8 @@ function MenuService($http, ApiPath) {
   service.getMenuItem = function (item) {
     var item_element={};   
     if (item) {
-      return $http.get(ApiPath + '/menu_items.json').then(function (response) {
+      return $http.get(ApiPath + '/menu_items.json').then(function (response) {        
+      if(response.data.menu_items!=undefined){
         var items=response.data.menu_items;
         for(var i=0;i<items.length;i++){
           if(items[i].short_name.toLowerCase()===item.toLowerCase()){
@@ -38,7 +39,8 @@ function MenuService($http, ApiPath) {
               break;
           }
         }
-        return item_element;
+       }
+       return item_element;
       });
     }   
   };
